@@ -1,0 +1,19 @@
+trigger:
+- main
+- develop
+- feature/*
+- master
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  buildConfiguration: 'Release'
+  isMain: $[eq(variables['Build.SourceBranch'], 'refs/heads/main')]
+
+stages:
+- stage: 'Build'
+  displayname: 'Build the web application'
+  jobs:
+  - job: 'BuildClient'
+    displayname: 'Build job'
